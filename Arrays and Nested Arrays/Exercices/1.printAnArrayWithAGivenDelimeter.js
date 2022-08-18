@@ -1,5 +1,5 @@
 function printAnArrayWithAGivenDelimeter(arr, separator) {
-  let result = [];
+  const result = [];
   
   arr.forEach((a) => result.push(a));
   console.log(result.join(separator));

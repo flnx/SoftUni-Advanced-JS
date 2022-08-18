@@ -1,5 +1,5 @@
 function diagonalAttack(arr) {
-  let matrix = [];
+  const matrix = [];
   let leftDiagonal = 0;
   let rightDiagonal = 0;
 
@@ -21,7 +21,7 @@ function diagonalAttack(arr) {
       }
     }
   }
-  let output = matrix.forEach((el) => console.log(el.join(' ')));
+  const output = matrix.forEach((el) => console.log(el.join(' ')));
 }
 diagonalAttack([
   '5 3 12 3 1',

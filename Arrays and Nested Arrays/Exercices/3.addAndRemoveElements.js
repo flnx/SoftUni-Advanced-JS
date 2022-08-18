@@ -1,5 +1,5 @@
 function addAndRemoveElements(params) {
-  let result = [1];
+  const result = [1];
 
   for (let i = 1; i < params.length; i++) {
     if (params[i] === 'add') {
@@ -15,6 +15,7 @@ function addAndRemoveElements(params) {
   }
 }
 addAndRemoveElements(['add', 'add', 'add', 'add']);
+console.log(`---------------`);
 addAndRemoveElements(['add', 'add', 'remove', 'add', 'add']);
 
 // output  [1, 2, 3, 4]

@@ -1,5 +1,5 @@
 function printeEveryNthElementFromAnArray(params, step) {
-  let arr = [];
+  const arr = [];
 
   for (let i = 0; i < params.length; i += step) {
     arr.push(params[i]);

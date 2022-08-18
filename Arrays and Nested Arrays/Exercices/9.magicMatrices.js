@@ -1,5 +1,5 @@
 function magicMatrices(arrays) {
-  let magicNum = arrays[0].reduce((acc, x) => (acc += x), 0);
+  const magicNum = arrays[0].reduce((acc, x) => (acc += x), 0);
   let isMagical = true;
   
   for (let i = 0; i < arrays.length; i++) {

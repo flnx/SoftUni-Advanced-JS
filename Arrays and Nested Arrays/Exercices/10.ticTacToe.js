@@ -1,10 +1,10 @@
 function ticTacToe(arr) {
-  let playerOne = 'X';
-  let playerTwo = 'O';
+  const playerOne = 'X';
+  const playerTwo = 'O';
   let isPlayerOne = true;
   let isPlayerTwo = false;
 
-  let board = [
+  const board = [
     [false, false, false],
     [false, false, false],
     [false, false, false],
@@ -52,10 +52,10 @@ function ticTacToe(arr) {
   // check for winners
   function winner(currentPlayer) {
     for (let row = 0; row < board.length; row++) {
-      let horizontalCheck = [];
-      let verticalCheck = [];
-      let leftDiagonalCheck = [];
-      let rightDiagonalCheck = [];
+      const horizontalCheck = [];
+      const verticalCheck = [];
+      const leftDiagonalCheck = [];
+      const rightDiagonalCheck = [];
 
       for (let col = 0; col < board.length; col++) {
         horizontalCheck.push(board[row][col]);
@@ -64,10 +64,10 @@ function ticTacToe(arr) {
         rightDiagonalCheck.push(board[col][board.length - 1 - col]);
       }
 
-      let horizontal = validateWinningPattern(horizontalCheck, currentPlayer);
-      let vertical = validateWinningPattern(verticalCheck, currentPlayer);
-      let leftDiagonal = validateWinningPattern(leftDiagonalCheck, currentPlayer);
-      let rightDiagonal = validateWinningPattern(rightDiagonalCheck, currentPlayer);
+      const horizontal = validateWinningPattern(horizontalCheck, currentPlayer);
+      const vertical = validateWinningPattern(verticalCheck, currentPlayer);
+      const leftDiagonal = validateWinningPattern(leftDiagonalCheck, currentPlayer);
+      const rightDiagonal = validateWinningPattern(rightDiagonalCheck, currentPlayer);
 
       if (horizontal || vertical || leftDiagonal || rightDiagonal) return true;
     }
