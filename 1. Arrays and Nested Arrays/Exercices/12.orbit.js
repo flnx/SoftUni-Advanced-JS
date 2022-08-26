@@ -19,3 +19,11 @@ function orbit(arr) {
   console.log(matrix.map((row) => row.join(' ')).join('\n'));
 }
 orbit([5, 5, 2, 2]);
+
+//output 
+
+// 3 3 3 3 3
+// 3 2 2 2 3
+// 3 2 1 2 3
+// 3 2 2 2 3
+// 3 3 3 3 3

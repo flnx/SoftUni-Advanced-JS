@@ -13,3 +13,5 @@ biggestElement([
 
   [8, 33, 145],
 ]);
+
+// output: 145

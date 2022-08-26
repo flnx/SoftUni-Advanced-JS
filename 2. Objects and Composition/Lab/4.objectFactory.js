@@ -1,3 +1,15 @@
+function factory(lib, list) {
+  return list.map((prop) => {
+    let obj = Object.assign({}, prop.template);
+
+    for (let part of prop.parts) {
+      obj[part] = lib[part];
+    }
+
+    return obj;
+  });
+}
+
 const library = {
   print: function () {
     console.log(`${this.name} is printing a page`);
@@ -31,3 +43,17 @@ const orders = [
 
 const products = factory(library, orders);
 console.log(products);
+
+
+// output:
+
+// [
+//   { name: 'ACME Printer', print: [Function: print] },
+//   { name: 'Initech Scanner', scan: [Function: scan] },
+//   {
+//     name: 'ComTron Copier',
+//     scan: [Function: scan],
+//     print: [Function: print]
+//   },
+//   { name: 'BoomBox Stereo', play: [Function: play] }
+// ]

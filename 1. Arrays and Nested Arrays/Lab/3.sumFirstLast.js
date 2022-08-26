@@ -6,3 +6,5 @@ function sumFirstLast(arr) {
 }
 
 sumFirstLast(['20', '30', '40']);
+
+// output: 60

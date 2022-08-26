@@ -14,3 +14,6 @@ function solve(n, k) {
   console.log(result.join(' '));
 }
 solve(6, 3);
+
+
+// output 11 2 4 7 13

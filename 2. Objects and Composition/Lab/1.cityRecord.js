@@ -7,4 +7,8 @@ function cityRecord(name, population, treasury) {
 
   return obj;
 }
-cityRecord('Tortuga', 7000, 15000);
+console.log(cityRecord('Tortuga', 7000, 15000));
+
+// output:
+// { name: 'Tortuga', population: 7000, treasury: 15000 }
+

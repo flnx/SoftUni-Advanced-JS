@@ -14,3 +14,5 @@ const output = pieceOfPie(
 );
 
 console.log(output);
+
+// output: [ 'Key Lime Pie', 'Cherry Pie', 'Lemon Meringue Pie' ]

@@ -7,3 +7,5 @@ function processOddPositions(arr) {
   console.log(result);
 }
 processOddPositions([10, 15, 20, 25]);
+
+// output: 50 30
