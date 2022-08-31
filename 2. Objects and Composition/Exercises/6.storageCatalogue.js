@@ -31,7 +31,6 @@ storeCatalogue([
   'T-Shirt : 10',
 ]);
 
-
 // output:
 
 // A
