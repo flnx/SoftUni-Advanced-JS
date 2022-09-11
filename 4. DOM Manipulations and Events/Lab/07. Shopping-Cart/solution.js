@@ -5,11 +5,12 @@ function solve() {
   let totalPrice = 0;
 
   textarea.value = '';
+
   Array.from(btnElements).forEach((b) =>
     b.addEventListener('click', (e) => {
       const parentElement = e.target.parentElement.parentElement;
-      const productTitleElement = parentElement.children[1].children;
-      const productName = productTitleElement[0].textContent;
+      const titleElement = parentElement.children[1].querySelector('.product-title');
+      const productName = titleElement.textContent;
       totalProducts.add(productName);
 
       const productPriceElement = parentElement.children;
@@ -27,6 +28,7 @@ function solve() {
     const resultProducts = Array.from(totalProducts);
 
     textarea.value += `You bought ${resultProducts.join(', ')} for ${totalPrice.toFixed(2)}.`;
+    
     for (let button of allButtons) {
       button.disabled = true;
     }
