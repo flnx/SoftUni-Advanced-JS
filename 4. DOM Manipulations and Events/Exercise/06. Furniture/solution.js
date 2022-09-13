@@ -1,68 +1,77 @@
 function solve() {
-  const generateBtn = document.querySelector('#exercise button');
-  const buyBtn = document.querySelector('#exercise button:last-of-type');
-  const output = document.querySelector('#exercise textarea:last-of-type');
-  output.value = '';
+  const [generateBtn, buyBtn] = Array.from(document.querySelectorAll('button'));
+  const [input, output] = Array.from(document.querySelectorAll('textarea'));
+  const tbody = document.querySelector('tbody');
 
   generateBtn.addEventListener('click', generate);
   buyBtn.addEventListener('click', buy);
 
-  // buy
-  function buy(e) {
-    const checkedElements = document.querySelectorAll('tbody tr');
-    let finalPrice = 0;
-    let factors = [];
-    let boughtFurniture = [];
-    output.value = '';
+  const items = [];
 
-    for (let line of checkedElements) {
-      const checkbox = line.querySelector('input[type="checkbox"]');
+  function buy() {
+    let list = [];
+    let total = 0;
+    let decoration = 0;
 
-      if (checkbox.checked) {
-        const row = line.children;
-        const productName = row[1].textContent;
-        const productPrice = Number(row[2].textContent);
-        const productFactor = Number(row[3].textContent);
+    let bought = items.filter((i) => i.isChecked());
 
-        boughtFurniture.push(productName);
-        factors.push(productFactor);
-        finalPrice += productPrice;
-      }
+    for (let item of bought) {
+      list.push(item.name);
+      total += Number(item.price);
+      decoration += Number(item.decFactor);
     }
-    // output
-    let avgFactor = factors.reduce((a, b) => a + b);
-    avgFactor = avgFactor / factors.length;
-    output.value =
-      `Bought furniture: ${boughtFurniture.join(', ')}\n` +
-      `Total price: ${finalPrice.toFixed(2)}\n` +
-      `Average decoration factor: ${avgFactor}`;
+    decoration /= bought.length;
+
+    output.value = [
+      `Bought furniture: ${list.join(', ')}`,
+      `Total price: ${total.toFixed(2)}`,
+      `Average decoration factor: ${decoration}`,
+    ].join('\n');
   }
 
-  // generate the given input
   function generate() {
-    const input = document.querySelector('#exercise textarea');
-    let parsedInput = JSON.parse(input.value);
+    const data = JSON.parse(input.value);
 
-    for (let obj of parsedInput) {
-      const tr = document.createElement('tr');
+    for (let item of data) {
+      const row = document.createElement('tr');
 
-      const tdImg = document.createElement('img');
-      const p1 = document.createElement('p');
-      const p2 = document.createElement('p');
-      const p3 = document.createElement('p');
+      row.appendChild(createColumn('img', item.img)); // Image column
+      row.appendChild(createColumn('p', item.name)); // Name column
+      row.appendChild(createColumn('p', item.price)); // Price column
+      row.appendChild(createColumn('p', item.decFactor)); // Decoration column
+
+      // Input column
+      const c5 = document.createElement('td');
       const checkbox = document.createElement('input');
-      tdImg.src = obj.img;
-      p1.textContent = obj.name;
-      p2.textContent = obj.price;
-      p3.textContent = obj.decFactor;
       checkbox.type = 'checkbox';
+      c5.appendChild(checkbox);
+      row.appendChild(c5);
 
-      tr.insertCell(0).appendChild(tdImg);
-      tr.insertCell(1).appendChild(p1);
-      tr.insertCell(2).appendChild(p2);
-      tr.insertCell(3).appendChild(p3);
-      tr.insertCell(4).appendChild(checkbox);
-      document.querySelector('#exercise tbody').appendChild(tr);
+      tbody.appendChild(row);
+
+      items.push({
+        ...item,
+        isChecked,
+      });
+
+      function isChecked() {
+        return checkbox.checked;
+      }
     }
+  }
+
+  function createColumn(type, content) {
+    const result = document.createElement('td');
+    let inner;
+
+    if (type == 'img') {
+      inner = document.createElement('img');
+      inner.src = content;
+    } else {
+      inner = document.createElement('p');
+      inner.textContent = content;
+    }
+    result.appendChild(inner);
+    return result;
   }
 }
