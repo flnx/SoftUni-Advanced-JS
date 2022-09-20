@@ -12,32 +12,32 @@ function spiralMatrix(rowEnd, colEnd) {
 
   // matrix
   for (let i = 0; i <= colEnd; i++) {
-    // row ->
+    // ->
     for (let a = i; a < rowEnd; a++) {
       matrix[i][a] = counter;
       counter++;
     }
-    
-    // col ⬇
+
+    // ⬇
     for (let b = i; b <= colEnd; b++) {
       matrix[b][colEnd] = counter;
       counter++;
     }
 
     colEnd--;
-    
-    // col <- 
+
+    // <-
     for (let c = colEnd; c >= i; c--) {
       matrix[rowEnd][c] = counter;
-      counter++
+      counter++;
     }
 
     rowEnd--;
 
-    // row ↑
+    // ↑
     for (let d = rowEnd; d > i; d--) {
-        matrix[d][i] = counter;
-        counter++;
+      matrix[d][i] = counter;
+      counter++;
     }
   }
 
@@ -46,8 +46,6 @@ function spiralMatrix(rowEnd, colEnd) {
   }
 }
 spiralMatrix(10, 10);
-
-// ! Damn. That was a hard task!
 
 // output
 

@@ -1,3 +1,6 @@
-function solve() {
-  //TODO...
+function getFibonator() {
+  
 }
+
+getFibonator();
+let fib = getFibonator();

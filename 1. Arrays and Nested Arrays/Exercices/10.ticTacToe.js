@@ -13,6 +13,7 @@ function ticTacToe(arr) {
   for (let i = 0; i < arr.length; i++) {
     let [x, y] = arr[i].split(' ').map(Number);
     let currentPlayer = null;
+    
     // check if there's any free space on the board
     let boardSpace = board.filter((arr) => arr.some((x) => x === false));
     if (boardSpace.length == 0) {
