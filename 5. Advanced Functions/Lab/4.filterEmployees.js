@@ -1,4 +1,4 @@
-// 1
+// solution 1
 function filterEmployees(input, criteria) {
   const [prop, value] = criteria.split('-');
 
@@ -6,19 +6,23 @@ function filterEmployees(input, criteria) {
     .filter((x) => x[prop] == value || criteria == 'all')
     .forEach((x, i) => console.log(`${i}. ${x.first_name} ${x.last_name} - ${x.email}`));
 }
+`----------------`
+// solution 2
+`----------------`
 
-// 2
 function filterEmployees(input, criteria) {
   const [prop, value] = criteria.split('-');
   let counter = 0;
 
+  JSON.parse(input).forEach((person) => selectByCriteria.call(person));
+
   function selectByCriteria() {
     if (this[prop] === value || criteria === 'all') {
-      return console.log(`${counter++}. ${this.first_name} ${this.last_name} - ${this.email}`);
+      return console.log(
+        `${counter++}. ${this.first_name} ${this.last_name} - ${this.email}`
+      );
     }
   }
-
-  JSON.parse(input).forEach((person) => selectByCriteria.call(person));
 }
 
 // output

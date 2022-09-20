@@ -5,6 +5,14 @@ function solve(areaIn, volIn, input) {
   }));
 }
 
+function area() {
+  return Math.abs(this.x * this.y);
+}
+
+function vol() {
+  return Math.abs(this.x * this.y * this.z);
+}
+
 console.log(
   solve(
     area,
@@ -17,15 +25,7 @@ console.log(
   )
 );
 
-function area() {
-  return Math.abs(this.x * this.y);
-}
-
-function vol() {
-  return Math.abs(this.x * this.y * this.z);
-}
-
-// output 
+// output
 
 // [
 //   { area: 2, vol: 20 },

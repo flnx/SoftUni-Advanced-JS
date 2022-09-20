@@ -16,6 +16,7 @@ function listProcessor(commands) {
     functionCall[command](txt);
   });
 }
+
 // --------SOL 2 --------//
 
 function listProcessor(commands) {
@@ -23,21 +24,20 @@ function listProcessor(commands) {
 
   const obj = {
     add(str) {
-      result.push(str)
+      result.push(str);
     },
     remove(str) {
-      result = result.filter(x => !x.includes(str))
+      result = result.filter((x) => !x.includes(str));
     },
     print() {
       console.log(result);
-    }
-  }
+    },
+  };
 
-  commands.forEach(x => {
+  commands.forEach((x) => {
     const [command, txt] = x.split(' ');
     obj[command](txt);
   });
-  
 }
 
 // output ['again', 'again']

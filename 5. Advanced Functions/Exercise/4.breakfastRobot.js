@@ -1,5 +1,5 @@
 function solution() {
-  const ingredients = { protein: 0, carbohydrate: 0, fat: 0, flavour: 0 };
+  const ingrds = { protein: 0, carbohydrate: 0, fat: 0, flavour: 0 };
 
   const recipes = {
     apple: { carbohydrate: 1, flavour: 2 },
@@ -23,7 +23,7 @@ function solution() {
 
   // - restock <microelement> <quantity>
   function restock(macros, quantity) {
-    ingredients[macros] += quantity;
+    ingrds[macros] += quantity;
     return 'Success';
   }
 
@@ -31,19 +31,19 @@ function solution() {
   function prepare(recipe, qty) {
     let currRecipe = Object.entries(recipes[recipe]);
 
-    for (let [ingredient, required] of currRecipe) {
+    for (let [ingr, required] of currRecipe) {
       const qtyNeeded = qty * required;
-      if (qtyNeeded > ingredients[ingredient]) {
-        return `Error: not enough ${ingredient} in stock`;
+      if (qtyNeeded > ingrds[ingr]) {
+        return `Error: not enough ${ingr} in stock`;
       }
     }
-    currRecipe.forEach(([ingr, required]) => (ingredients[ingr] -= required * qty));
+    currRecipe.forEach(([ingr, required]) => (ingrds[ingr] -= required * qty));
     return 'Success';
   }
 
   // - report
   function report() {
-    return `protein=${ingredients.protein} carbohydrate=${ingredients.carbohydrate} fat=${ingredients.fat} flavour=${ingredients.flavour}`;
+    return `protein=${ingrds.protein} carbohydrate=${ingrds.carbohydrate} fat=${ingrds.fat} flavour=${ingrds.flavour}`;
   }
 }
 
