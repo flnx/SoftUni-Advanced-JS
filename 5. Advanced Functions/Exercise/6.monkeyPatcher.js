@@ -2,7 +2,7 @@ function solution(action) {
   const upvote = () => this.upvotes++;
   const downvote = () => this.downvotes++;
 
-  const report = () => {
+  const score = () => {
     let inflated = 0;
     const totalVotes = this.upvotes + this.downvotes;
 
@@ -19,8 +19,8 @@ function solution(action) {
     return [upvotes, downvotes, balance, ratingResult];
   };
 
-  const commands = { upvote, downvote, score: report };
-  let fn = commands[action];
+  const commands = { upvote, downvote, score };
+  const fn = commands[action];
   return fn();
 
   function checkRating(totalVotes, positiveVotes, balance) {

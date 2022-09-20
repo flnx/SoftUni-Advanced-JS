@@ -18,7 +18,7 @@ function argumentInfo(...args) {
 argumentInfo('cat', 'cat', 42, function () { console.log('Hello world!'); });
 
 // output:
-`------------------`
+// `------------------`
 // 2
 // string: cat
 // number: 42
