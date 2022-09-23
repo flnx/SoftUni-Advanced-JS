@@ -1,7 +1,7 @@
 function solve() {
+  const [_, secOne, secTwo, secThree] = Array.from(document.querySelectorAll('section')).map(s => s.children[1]);
   const [task, description, date] = document.querySelectorAll('form input, textarea');
   const addBtn = document.getElementById('add').addEventListener('click', addTask);
-  const sections = document.querySelectorAll('section');
 
   function addTask(e) {
     e.preventDefault();
@@ -20,21 +20,20 @@ function solve() {
       div.appendChild(deleteBtn);
       article.appendChild(div);
 
-      startBtn.addEventListener('click', (e) => {
-        sections[2].children[1].appendChild(article);
-
-        finishBtn.addEventListener('click', (e) => {
-          sections[3].children[1].appendChild(article);
-          div.remove();
-        });
-
+      startBtn.addEventListener('click', () => {
+        startBtn.remove();
         div.appendChild(finishBtn);
-        e.target.remove();
+        secTwo.appendChild(article);
+      });
+
+      finishBtn.addEventListener('click', () => {
+        secThree.appendChild(article);
+        div.remove();
       });
 
       deleteBtn.addEventListener('click', () => article.remove());
-      
-      sections[1].children[1].appendChild(article);
+
+      secOne.appendChild(article);
       Array.from(document.querySelectorAll('input, textarea')).forEach(x => x.value = '');
     }
   }
