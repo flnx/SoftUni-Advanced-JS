@@ -13,7 +13,6 @@ function solution() {
 
   return managment;
 
-  // manage commands
   function managment(input) {
     let [command, type, quantity] = input.split(' ');
     quantity = Number(quantity);
@@ -21,13 +20,11 @@ function solution() {
     return action(type, quantity);
   }
 
-  // - restock <microelement> <quantity>
   function restock(macros, quantity) {
     ingrds[macros] += quantity;
     return 'Success';
   }
 
-  // - prepare <recipe> <quantity>
   function prepare(recipe, qty) {
     let currRecipe = Object.entries(recipes[recipe]);
 
