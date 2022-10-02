@@ -30,6 +30,7 @@ function solve() {
     bestWorkers.textContent = print;
     
     // Add restaurants and workers
+    
     function create(input) {
       const [restaurant, workersInfo] = input.split(' - ');
 
@@ -44,6 +45,7 @@ function solve() {
       }
       return restaurants;
     }
+
     // find highest restaurant's average salary
     function findHighestAvg(key, values) {
       const workers = Object.keys(values);
