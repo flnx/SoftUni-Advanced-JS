@@ -1,11 +1,12 @@
 function solve() {
-  const [_, secOne, secTwo, secThree] = Array.from(document.querySelectorAll('section')).map(s => s.children[1]);
+  const sections = document.querySelectorAll('section')
+  const [_, secOne, secTwo, secThree] = Array.from(sections).map(s => s.children[1])
   const [task, description, date] = document.querySelectorAll('form input, textarea');
-  const addBtn = document.getElementById('add').addEventListener('click', addTask);
+  document.getElementById('add').addEventListener('click', addTask);
 
   function addTask(e) {
     e.preventDefault();
-    
+
     if (task.value && description.value && date.value) {
       const article = document.createElement('article');
       const div = create('div', '', 'flex');
@@ -37,7 +38,7 @@ function solve() {
       Array.from(document.querySelectorAll('input, textarea')).forEach(x => x.value = '');
     }
   }
-  
+
   function create(type, text, className) {
     const element = document.createElement(type);
     element.appendChild(document.createTextNode(text));

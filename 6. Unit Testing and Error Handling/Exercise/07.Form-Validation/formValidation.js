@@ -12,10 +12,10 @@ function validate() {
   html.checkbox.addEventListener('change', () => {
     document.getElementById('companyInfo').style.display = html.checkbox.checked ? 'block' : 'none';
   });
-
+  
   Array.from(document.querySelectorAll('input')).forEach((x) => (x.value = ''));
   html.checkbox.checked ? (html.checkbox.checked = false) : '';
-
+  
   function onClick(e) {
     e.preventDefault();
     const valids = [];
@@ -27,12 +27,13 @@ function validate() {
       emailCheck: html.email.value.indexOf('@'),
     };
 
+    
     const fieldValidator = {
       username: validations.userRegex.test(html.username.value), 
       password: validations.passRegex.test(html.password.value) && html.confirmPass.value === html.password.value,
       email: validations.emailCheck > 0 && html.email.value.includes('.', validations.emailCheck),
     };
-
+    
     const validFields = (key, isFieldValid) => {
       if (isFieldValid) {
         valids.push(html[key]);
