@@ -12,3 +12,14 @@ class Request{
 
 let myData = new Request('GET', 'http://google.com', 'HTTP/1.1', '')
 console.log(myData);
+
+// Output:
+
+// Request {
+//   method: 'GET',
+//   uri: 'http://google.com',
+//   version: 'HTTP/1.1',
+//   message: '',
+//   response: undefined,
+//   fulfilled: false
+// }

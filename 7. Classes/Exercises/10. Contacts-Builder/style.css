@@ -1,28 +1,28 @@
 article {
-    background: #EEE;
-    padding: 1px;
-    width: 250px;
-    margin: 1px;
+  background: #eee;
+  padding: 1px;
+  width: 250px;
+  margin: 1px;
 }
 
 .title {
-    background: #DDD;
-    padding: 5px;
-    font-weight: bold;
+  background: #ddd;
+  padding: 5px;
+  font-weight: bold;
 }
 
 .title button {
-    float: right
+  float: right;
 }
 
 .info {
-    margin: 5px;
+  margin: 5px;
 }
 
 .info span {
-    display: block;
+  display: block;
 }
 
 .online {
-    background: #9E9;
+  background: #9e9;
 }
