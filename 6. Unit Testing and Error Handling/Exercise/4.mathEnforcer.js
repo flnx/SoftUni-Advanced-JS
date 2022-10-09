@@ -20,5 +20,4 @@ let mathEnforcer = {
 };
 
 module.exports = { mathEnforcer };
-
 //add five to positive num

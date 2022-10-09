@@ -11,7 +11,7 @@ class Company {
     if (!this.departments.hasOwnProperty(department)) {
       this.departments[department] = [];
     }
-
+    
     this.departments[department].push({ name, salary, position });
     return `New employee is hired. Name: ${name}. Position: ${position}`;
   }
@@ -29,7 +29,7 @@ class Company {
         avgSalary = depAvgSalary;
       }
     }
-
+  
     const sortedBySalaries = this.departments[bestDepartment]
       .sort((a, b) => b.salary - a.salary || a.name.localeCompare(b.name))
       .map((x) => `${x.name} ${x.salary} ${x.position}`)
