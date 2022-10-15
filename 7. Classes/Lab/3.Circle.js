@@ -23,9 +23,6 @@ c.diameter = 1.6;
 console.log(`Radius: ${c.radius}`); // Radius: 0.8
 console.log(`Diameter: ${c.diameter}`); // Diameter: 1.6
 console.log(`Area: ${c.area}`); // Area: 2.0106192982974678
- 
-// OUTPUT:
-// -----------------------------------------
 
 
 

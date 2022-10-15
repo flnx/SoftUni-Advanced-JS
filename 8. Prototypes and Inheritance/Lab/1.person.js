@@ -21,8 +21,6 @@ function createPerson(firstName, lastName) {
   return person;
 }
 
-
-
 let person = createPerson('Peter', 'Ivanov');
 console.log(person.fullName); //Peter Ivanov
 person.firstName = 'George';

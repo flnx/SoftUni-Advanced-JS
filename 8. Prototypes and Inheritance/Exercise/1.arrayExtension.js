@@ -18,13 +18,13 @@
   Array.prototype.average = function () {
     return this.sum() / this.length;
   };
-})();
+})()
 
 const test1 = [1, 2, 3, 4, 5];
 
 const myArr = [1, 2, 3, 4, 5];
-console.log(myArr.last());  // 5
+console.log(myArr.last()); // 5
 console.log(myArr.skip(1)); // [2, 3, 4, 5]
 console.log(myArr.take(1)); // [1]
-console.log(myArr.sum(1));  // 15
+console.log(myArr.sum(1)); // 15
 console.log(myArr.average(1)); // 3

@@ -37,4 +37,4 @@ function inheritAndReplace() {
 
 const person = inheritAndReplace();
 const teacher = new person.Student('Tester', 'Testerovski', 'Class Testing');
-console.log(teacher.toString());
+console.log(teacher.toString()); // Student (name: Tester, email: Testerovski, course: Class Testing)
