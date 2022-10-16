@@ -22,7 +22,7 @@ class Garden {
 
     const plantObj = this.plants.find((x) => x.plantName == plantNameInput);
 
-    if (plantObj == undefined) {
+    if (!plantObj) {
       throw new Error(`There is no ${plantNameInput} in the garden.`);
     }
     if (plantObj.ripe) {
