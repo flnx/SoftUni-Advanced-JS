@@ -16,20 +16,19 @@ class Garden {
   }
 
   ripenPlant(plantNameInput, qty) {
+    if (qty <= 0) {
+      throw new Error('The quantity cannot be zero or negative.');
+    }
+
     const plantObj = this.plants.find((x) => x.plantName == plantNameInput);
 
     if (plantObj == undefined) {
       throw new Error(`There is no ${plantNameInput} in the garden.`);
     }
-
     if (plantObj.ripe) {
       throw new Error(`The ${plantNameInput} is already ripe.`);
     }
-
-    if (qty <= 0) {
-      throw new Error('The quantity cannot be zero or negative.');
-    }
-
+    
     plantObj.ripe = true;
     plantObj.quantity += qty;
 
@@ -40,21 +39,21 @@ class Garden {
   }
 
   harvestPlant(plantNameInput) {
-    const plantObj = this.plants.find((x) => x.plantName == plantNameInput);
-
-    if (plantObj == undefined) {
+    const plantIndex = this.plants.findIndex((x) => x.plantName == plantNameInput);
+    if (plantIndex == -1) {
       throw new Error(`There is no ${plantNameInput} in the garden.`);
     }
+    const plantObj = this.plants[plantIndex];
 
     if (!plantObj.ripe) {
       throw new Error(`The ${plantNameInput} cannot be harvested before it is ripe.`);
     }
 
-    this.storage.push({ 
-      plantName: plantNameInput, 
-      quantity: plantObj.quantity 
+    this.storage.push({
+      plantName: plantNameInput,
+      quantity: plantObj.quantity,
     });
-    this.plants = this.plants.filter((x) => x.plantName != plantNameInput);
+    this.plants.splice(plantIndex, 1);
     this.spaceAvailable += plantObj.spaceReq;
     return `The ${plantNameInput} has been successfully harvested.`;
   }
@@ -66,14 +65,13 @@ class Garden {
       .sort((a, b) => a.localeCompare(b))
       .join(', ');
 
-    let plantsInStorage = this.storage
-      .map((x) => `${x.plantName} (${x.quantity})`)
-      .join(', ');
+    let storageInfo = `Plants in storage: The storage is empty.`;
 
-    if (this.storage.length == 0) {
-      return `${reportFreeSpace}\nPlants in the garden: ${plantsInGarden}\nPlants in storage: The storage is empty.`;
+    if (this.storage.length > 0) {
+      let plantsInStorage = this.storage.map((x) => `${x.plantName} (${x.quantity})`);
+      storageInfo = `Plants in storage: ${plantsInStorage.join(', ')}`;
     }
-    return `${reportFreeSpace}\nPlants in the garden: ${plantsInGarden}\nPlants in storage: ${plantsInStorage}`;
+    return `${reportFreeSpace}\nPlants in the garden: ${plantsInGarden}\n${storageInfo}`;
   }
 }
 

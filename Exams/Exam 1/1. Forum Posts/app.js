@@ -1,7 +1,9 @@
 window.addEventListener('load', solve);
 
 function solve() {
-  const [_, title, category, content, publishBtn] = Array.from(document.querySelector('.newPostContent').children)
+  const [_, title, category, content, publishBtn] = Array.from(
+    document.querySelector('.newPostContent').children
+  );
 
   publishBtn.addEventListener('click', publish);
   document.getElementById('clear-btn').addEventListener('click', clear);
@@ -34,7 +36,7 @@ function solve() {
 
     function edit() {
       title.value = h4.textContent;
-      category.value = pCat.textContent.split('Category:').join('').trim();;
+      category.value = pCat.textContent.split('Category:').join('').trim();
       content.value = pCon.textContent.split('Content:').join('').trim();
       li.remove();
     }
