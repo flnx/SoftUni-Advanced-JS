@@ -18,10 +18,10 @@ function solve() {
     };
 
     const keys = Object.keys(html);
-    const values = keys.map((x) => html[x].value);
-
-    let [makeVal, modelVal, yearVal, __, costVal, priceVal] = values;
     const invalidFields = keys.some((x) => html[x].value == '');
+    const values = keys.map((x) => html[x].value);
+    
+    let [makeVal, modelVal, yearVal, __, costVal, priceVal] = values;
 
     if (Number(html.cost.value) > Number(html.price.value) || invalidFields) {
       return;

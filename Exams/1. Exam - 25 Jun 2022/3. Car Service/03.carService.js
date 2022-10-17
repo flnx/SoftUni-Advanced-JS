@@ -1,14 +1,14 @@
 const carService = {
   isItExpensive(issue) {
-    if (issue === "Engine" || issue === "Transmission") {
+    if (issue === 'Engine' || issue === 'Transmission') {
       return `The issue with the car is more severe and it will cost more money`;
     } else {
       return `The overall price will be a bit cheaper`;
     }
   },
   discount(numberOfParts, totalPrice) {
-    if (typeof numberOfParts !== "number" || typeof totalPrice !== "number") {
-      throw new Error("Invalid input");
+    if (typeof numberOfParts !== 'number' || typeof totalPrice !== 'number') {
+      throw new Error('Invalid input');
     }
 
     let discountPercentage = 0;
@@ -22,7 +22,7 @@ const carService = {
     let result = (discountPercentage / 100) * totalPrice;
 
     if (numberOfParts <= 2) {
-      return "You cannot apply a discount";
+      return 'You cannot apply a discount';
     } else {
       return `Discount applied! You saved ${result}$`;
     }
@@ -31,7 +31,7 @@ const carService = {
     let totalSum = 0;
 
     if (!Array.isArray(partsCatalog) || !Array.isArray(neededParts)) {
-      throw new Error("Invalid input");
+      throw new Error('Invalid input');
     }
     neededParts.forEach((neededPart) => {
       partsCatalog.map((obj) => {
@@ -44,3 +44,5 @@ const carService = {
     return totalSum;
   },
 };
+
+module.exports = ({ carService });
