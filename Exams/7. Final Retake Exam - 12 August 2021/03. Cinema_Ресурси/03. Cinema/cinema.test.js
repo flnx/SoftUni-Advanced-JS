@@ -2,13 +2,13 @@ const { expect } = require('chai');
 const { cinema } = require('./cinema');
 
 describe('cinema test', () => {
-  // describe('showMovies tests', () => {
-  //   it('tests if array is empty', () => {
-  //     expect(cinema.showMovies(['test1', 'test2'])).to.equal('test1, test2');
-  //     expect(cinema.showMovies([])).to.equal('There are currently no movies to show.');
-  //     expect(cinema.showMovies(['test1', 'test2'])).to.equal('test1, test2');
-  //   });
-  // });
+  describe('showMovies tests', () => {
+    it('tests if array is empty', () => {
+      expect(cinema.showMovies(['test1', 'test2'])).to.equal('test1, test2');
+      expect(cinema.showMovies([])).to.equal('There are currently no movies to show.');
+      expect(cinema.showMovies(['test1', 'test2'])).to.equal('test1, test2');
+    });
+  });
 
   describe('ticketPrice tests', () => {
     it('tests if premiere is on schedule', () => {
@@ -49,5 +49,4 @@ describe('cinema test', () => {
       expect(cinema.swapSeatsInHall({}, 1)).to.equal('Unsuccessful change of seats in the hall.');
     });
   });
-
 });
