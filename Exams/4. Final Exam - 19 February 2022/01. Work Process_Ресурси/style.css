@@ -1,6 +1,6 @@
 body {
-    background-image: url("./images/background.jpg");
-    background-size: cover;
+  background-image: url('./images/background.jpg');
+  background-size: cover;
 }
 
 *,
@@ -9,7 +9,7 @@ body {
   box-sizing: border-box;
 }
 
-h1{
+h1 {
   font-size: 50px;
   color: #25b7c4;
   text-transform: uppercase;
@@ -23,7 +23,6 @@ section {
   float: left;
   display: inline-table;
   width: 45%;
-  
 }
 
 .form {
@@ -54,7 +53,6 @@ label {
   left: 13px;
   color: rgba(255, 255, 255, 0.5);
   font-size: 18px;
-  
 }
 
 input,
@@ -71,7 +69,7 @@ textarea {
   border-radius: 10px;
 }
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -87,13 +85,18 @@ textarea:focus {
   border-color: #1ab188;
 }
 
-.fname, .lname, .email, .birth, .salary, .position {
+.fname,
+.lname,
+.email,
+.birth,
+.salary,
+.position {
   position: relative;
   margin-bottom: 40px;
 }
 
 .top-row:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
@@ -119,28 +122,29 @@ textarea:focus {
   color: #ffffff;
 }
 
-
 .button-block {
   display: block;
   width: 100%;
 }
 
-table{
+table {
   width: 100%;
 }
 
 .tbl-header {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.tbl-content{
+.tbl-content {
   height: auto;
   overflow-x: auto;
   margin-top: 0px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-th{
+th {
   padding: 20px;
   text-align: center;
   font-weight: 1000;
@@ -149,18 +153,18 @@ th{
   text-transform: uppercase;
 }
 
-td{
+td {
   padding: 20px;
   text-align: center;
-  vertical-align:middle;
+  vertical-align: middle;
   font-weight: 300;
   font-size: 14px;
   color: #fff;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-table{
+table {
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
   font-family: 'Roboto', sans-serif;
@@ -168,25 +172,25 @@ table{
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
-} 
+  width: 6px;
+}
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-} 
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
 
 ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 button {
-  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
   border: 0;
   border-radius: 12px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 2.5;
@@ -194,21 +198,22 @@ button {
   padding: 0 1rem;
   text-align: center;
   text-decoration: none;
-  transition: box-shadow .2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
   margin-top: 10px;
-
 }
 
 button:hover {
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
 p {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 26px;
   text-align: center;
   font-weight: 500;
