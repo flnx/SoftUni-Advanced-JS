@@ -78,6 +78,8 @@ class Restaurant {
       let [product, quantityNeeded] = line.split(' ');
       this.stockProducts[product] -= quantityNeeded;
     }
+    
+    this.budgetMoney += this.menu[meal].price;
     return `Your order (${meal}) will be completed in the next 30 minutes and will cost you ${this.menu[meal].price}.`;
   }
 }
