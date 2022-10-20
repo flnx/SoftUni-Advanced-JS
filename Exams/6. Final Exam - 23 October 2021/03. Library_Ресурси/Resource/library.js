@@ -33,5 +33,6 @@ const library = {
             return "Insufficient space, more shelves need to be purchased.";
         }
     }
-
 };
+
+module.exports = { library };

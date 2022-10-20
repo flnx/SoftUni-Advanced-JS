@@ -42,11 +42,7 @@ function solve() {
 
     document.getElementById('tbody').appendChild(tr);
     totalSum.textContent = budget.toFixed(2);
-
     keys.map(x => html[x].value = '');
-    function fired() {
-      console.log('fired');
-    }
     
     function edit() {
       budget -= salary;
