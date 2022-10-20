@@ -3,7 +3,7 @@ window.addEventListener('load', solve);
 function solve() {
   const [sendBtn, clearBtn] = document.querySelectorAll('button');
   const [description, name, phone] = document.querySelectorAll('textarea, input');
-  const select = document.getElementById('type-product')
+  const select = document.getElementById('type-product');
 
   sendBtn.addEventListener('click', send);
   clearBtn.addEventListener('click', clear);
@@ -12,7 +12,7 @@ function solve() {
     e.preventDefault();
 
     if (!description.value || !name.value || !phone.value) {
-      return
+      return;
     }
 
     const div = document.createElement('div');
@@ -21,8 +21,8 @@ function solve() {
     const h4 = createElements('h4', `Description of the problem: ${description.value}`);
     const startBtn = createButton('start-btn', 'Start repair', startRepair);
     const finishBtn = createButton('finish-btn', 'Finish repair', finishRepair);
-    div.classList.add('container')
-    finishBtn.setAttribute('disabled', 'disabled');
+    div.classList.add('container');
+    finishBtn.disabled = true;
 
     append(div, h2, h3, h4, startBtn, finishBtn);
     document.getElementById('received-orders').appendChild(div);
@@ -36,8 +36,8 @@ function solve() {
     }
 
     function startRepair() {
-      startBtn.setAttribute('disabled', 'disabled');
-      finishBtn.removeAttribute('disabled');
+      startBtn.disabled = true;
+      finishBtn.disabled = false;
     }
 
     function finishRepair() {
