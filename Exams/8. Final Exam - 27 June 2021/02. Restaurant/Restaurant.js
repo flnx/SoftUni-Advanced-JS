@@ -48,7 +48,7 @@ class Restaurant {
     if (this.mealCounter == 0) {
       return 'Our menu is not ready yet, please come later...';
     }
-    // prints the product and its price;
+    // prints out the products and their price;
     const keys = Object.keys(this.menu);
     let output = keys.map((x) => `${x} - $ ${this.menu[x].price}`);
     return output.join('\n');
@@ -78,7 +78,7 @@ class Restaurant {
       let [product, quantityNeeded] = line.split(' ');
       this.stockProducts[product] -= quantityNeeded;
     }
-    
+
     this.budgetMoney += this.menu[meal].price;
     return `Your order (${meal}) will be completed in the next 30 minutes and will cost you ${this.menu[meal].price}.`;
   }
@@ -93,8 +93,7 @@ console.log(
     'Yogurt 10 10',
     'Yogurt 500 1500',
     'Honey 5 50',
-  ])
-);
+  ]));
 
 // Successfully loaded 10 Banana
 // Successfully loaded 20 Banana
@@ -104,13 +103,7 @@ console.log(
 // Successfully loaded 5 Honey
 
 console.log(`----------------------------------------------------`);
-console.log(
-  kitchen.addToMenu(
-    'frozenYogurt',
-    ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'],
-    9.99
-  )
-);
+console.log(kitchen.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99));
 console.log(
   kitchen.addToMenu(
     'Pizza',
@@ -125,8 +118,7 @@ console.log(
       'Cheese 1.5',
     ],
     15.55
-  )
-);
+  ));
 console.log(kitchen.showTheMenu());
 
 // Output 2
@@ -139,12 +131,8 @@ console.log(`----------------------------------------------------`);
 
 let kitchen2 = new Restaurant(1000);
 kitchen2.loadProducts(['Yogurt 30 3', 'Honey 50 4', 'Strawberries 20 10', 'Banana 5 1']);
-kitchen2.addToMenu(
-  'frozenYogurt',
-  ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'],
-  9.99
-);
+kitchen2.addToMenu( 'frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99);
 console.log(kitchen2.makeTheOrder('frozenYogurt'));
 
-// // Output 4
-// // Your order (frozenYogurt) will be completed in the next 30 minutes and will cost you 9.99.
+// Output 4
+// Your order (frozenYogurt) will be completed in the next 30 minutes and will cost you 9.99.
