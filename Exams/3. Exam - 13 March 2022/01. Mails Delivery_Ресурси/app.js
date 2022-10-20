@@ -11,7 +11,6 @@ function solve() {
     e.preventDefault();
 
     if (!nameElem.value || !titleElem.value || !messageElem.value) {
-      console.log('wtf');
       return;
     }
 
