@@ -5,10 +5,11 @@ function solve() {
 
   function onCreate(e) {
     e.preventDefault();
+    
     const [creator, title, category, content] = document.querySelectorAll('form input, textarea')
     const titleValue = title.value;
-
     const article = document.createElement('article');
+
     article.innerHTML = `
     <h1>${title.value}</h1> 
     <p>Category: <strong>${category.value}</strong></p>
@@ -18,6 +19,7 @@ function solve() {
     <button class="btn delete">Delete</button>
     <button class="btn archive">Archive</button>
     </div>`;
+
     article.querySelector('.delete').addEventListener('click', onDelete);
     article.querySelector('.archive').addEventListener('click', onArchive);
     document.querySelector('main section').appendChild(article);
@@ -32,6 +34,7 @@ function solve() {
       const sorted = archiveChildren.sort((a, b) => a.textContent.localeCompare(b.textContent));
       sorted.forEach(li => archivedSection.appendChild(li));
     }
+
     function onDelete() {
       article.remove();
     }
