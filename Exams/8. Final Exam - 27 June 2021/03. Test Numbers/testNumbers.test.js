@@ -53,15 +53,9 @@ describe('testNumbers tests' , () => {
 
     describe('sumNumbers tests' , () => {
       it('returns the correct result if the input is correct (2 numbers), rounded up to the second decimal point', () => {
-        expect(testNumbers.averageSumArray([10, 20, 30, 40, 50])).to.deep.equal(30);
         expect(testNumbers.averageSumArray([1, 2, 3, 4, 5])).to.deep.equal(3);
+        expect(testNumbers.averageSumArray([10, 20, 30, 40, 50])).to.deep.equal(30);
       });
-  
-  
     });
-  
-
   });
-
-
 });
