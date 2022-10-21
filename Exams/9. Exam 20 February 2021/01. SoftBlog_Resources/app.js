@@ -2,32 +2,18 @@ function solve() {
   const createBtn = document.querySelector('.create');
   createBtn.addEventListener('click', onCreate);
   const archivedSection = document.querySelector('.archive-section ol');
-  let archivedArr = [];
 
   function onCreate(e) {
     e.preventDefault();
-
-    const html = {
-      creator: document.getElementById('creator'),
-      title: document.getElementById('title'),
-      category: document.getElementById('category'),
-      content: document.getElementById('content'),
-    };
-
-    const title = html.title.value;
-    const keys = Object.keys(html);
-    const fieldIsEmpty = keys.some((x) => html[x].value == '');
-
-    if (fieldIsEmpty) {
-      return;
-    }
+    const [creator, title, category, content] = document.querySelectorAll('form input, textarea')
+    const titleValue = title.value;
 
     const article = document.createElement('article');
     article.innerHTML = `
-    <h1>${html.title.value}</h1> 
-    <p>Category: <strong>${html.category.value}</strong></p>
-    <p>Creator: <strong>${html.creator.value}</strong></p>
-    <p>${html.content.value}</p>
+    <h1>${title.value}</h1> 
+    <p>Category: <strong>${category.value}</strong></p>
+    <p>Creator: <strong>${creator.value}</strong></p>
+    <p>${content.value}</p>
     <div class="buttons">
     <button class="btn delete">Delete</button>
     <button class="btn archive">Archive</button>
@@ -39,31 +25,13 @@ function solve() {
     function onArchive() {
       article.remove();
       const li = document.createElement('li');
-      li.appendChild(document.createTextNode(title));
+      li.appendChild(document.createTextNode(titleValue));
       archivedSection.appendChild(li);
-  
+
       const archiveChildren = Array.from(archivedSection.children);
       const sorted = archiveChildren.sort((a, b) => a.textContent.localeCompare(b.textContent));
       sorted.forEach(li => archivedSection.appendChild(li));
-
-      
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function onDelete() {
       article.remove();
     }
