@@ -1,7 +1,8 @@
 function solve() {
   const createBtn = document.querySelector('.create');
   createBtn.addEventListener('click', onCreate);
-  let archived = [];
+  const archivedSection = document.querySelector('.archive-section ol');
+  let archivedArr = [];
 
   function onCreate(e) {
     e.preventDefault();
@@ -37,17 +38,31 @@ function solve() {
 
     function onArchive() {
       article.remove();
-      archived.push(title);
-      archived.sort((a, b) => a.localeCompare(b));
-      const archive = document.querySelector('.archive-section ol');
-      archive.innerHTML = '';
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode(title));
+      archivedSection.appendChild(li);
+  
+      const archiveChildren = Array.from(archivedSection.children);
+      const sorted = archiveChildren.sort((a, b) => a.textContent.localeCompare(b.textContent));
+      sorted.forEach(li => archivedSection.appendChild(li));
 
-      for (let el of archived) {
-        const li = document.createElement('li');
-        li.appendChild(document.createTextNode(el));
-        archive.appendChild(li);
-      }
+      
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function onDelete() {
       article.remove();
