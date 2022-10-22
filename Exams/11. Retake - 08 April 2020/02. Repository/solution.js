@@ -65,6 +65,7 @@ class Repository {
 
 module.exports = { Repository };
 
+
 // Initialize props object
 let properties = {
   name: 'string',
@@ -73,12 +74,15 @@ let properties = {
 };
 //Initialize the repository
 let repository = new Repository(properties);
+
+console.log(repository instanceof Repository);
 // Add two entities
 let entity = {
   name: 'Pesho',
   age: 22,
   birthday: new Date(1998, 0, 7),
 };
+
 repository.add(entity); // Returns 0
 repository.add(entity); // Returns 1
 console.log(repository.getId(0));
