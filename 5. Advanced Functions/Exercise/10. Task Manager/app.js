@@ -1,6 +1,6 @@
 function solve() {
   const sections = document.querySelectorAll('section')
-  const [_, secOne, secTwo, secThree] = Array.from(sections).map(s => s.children[1])
+  const [_, secOne, secTwo, secThree] = Array.from(sections).map(s => s.children[1]);
   const [task, description, date] = document.querySelectorAll('form input, textarea');
   document.getElementById('add').addEventListener('click', addTask);
 
