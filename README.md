@@ -1,8 +1,5 @@
 # Software University Lecture Exercises (Advanced)
 
-## 🔭 In Progress...
-
-
 #### Quick rewind of:
 - Syntax, Functions and Statements 
 - Arrays and Nested Arrays 
