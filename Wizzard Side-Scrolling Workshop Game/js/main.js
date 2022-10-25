@@ -23,7 +23,7 @@ let player = {
 };
 
 let game = {
-  speed: 2,
+  speed: 1,
   movingMultiplier: 4,
   fireBallMultiplier: 5,
   fireInterval: 1000,
@@ -35,6 +35,7 @@ let scene = {
   score: 0,
   lastCloudSpawn: 0,
   lastBugSpawn: 0,
+  isActiveGame: true,
 };
 
 function onGameStart() {
@@ -77,8 +78,21 @@ function gameAction(timestamp) {
     scene.lastBugSpawn = timestamp;
   }
 
+  // Modifu bug positions;
+  let bugs = document.querySelectorAll('.bug');
+  bugs.forEach((bug) => {
+    bug.x -= game.speed * 1.3;
+    bug.style.left = bug.x + 'px';
+    if (bug.x + bugs.offesetWidth <= 0) {
+      bug.parentElement.removeChild(bug);
+    }
+  });
+
   // Add clouds
-  if (timestamp - scene.lastCloudSpawn > game.cloudSpawnInterval + 20000 * Math.random()) {
+  if (
+    timestamp - scene.lastCloudSpawn >
+    game.cloudSpawnInterval + 20000 * Math.random()
+  ) {
     let cloud = document.createElement('div');
     cloud.classList.add('cloud');
     cloud.x = gameArea.offsetWidth - 200;
@@ -143,6 +157,13 @@ function gameAction(timestamp) {
     wizard.classList.remove('wizard-fire');
   }
 
+  // collision detection
+  bugs.forEach((bug) => {
+    if (isCollision(wizard, bug)) {
+      gameOverAction();
+    }
+  });
+
   // Apply movement;
   wizard.style.top = player.y + 'px';
   wizard.style.left = player.x + 'px';
@@ -150,7 +171,9 @@ function gameAction(timestamp) {
   // Apply score
   gamePoints.textContent = scene.score;
 
-  window.requestAnimationFrame(gameAction);
+  if (scene.isActiveGame) {
+    window.requestAnimationFrame(gameAction);
+  }
 }
 
 function addFireBall() {
@@ -161,4 +184,21 @@ function addFireBall() {
   fireBall.x = player.x + player.width;
   fireBall.style.left = fireBall.x + 'px';
   gameArea.appendChild(fireBall);
+}
+
+function isCollision(firstElement, secondElement) {
+  let firstRect = firstElement.getBoundingClientRect();
+  let secondRect = secondElement.getBoundingClientRect();
+
+  return !(
+    firstRect.top > secondRect.bottom ||
+    firstRect.bottom < secondRect.top ||
+    firstRect.right < secondRect.left ||
+    firstRect.left > secondRect.right
+  );
+}
+
+function gameOverAction() {
+  scene.isActiveGame = false;
+  gameOver.classList.remove('hide');
 }
