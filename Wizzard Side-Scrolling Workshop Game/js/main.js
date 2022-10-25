@@ -24,11 +24,12 @@ let player = {
 let game = {
   speed: 2,
   movingMultiplier: 4,
+  fireBallMultiplier: 5,
 };
 
 let scene = {
   score: 0,
-}
+};
 
 function onGameStart() {
   gameStart.classList.add('hide');
@@ -54,14 +55,26 @@ function onKeyUp(e) {
   keys[e.code] = false;
 }
 
-function gameAction() {
+function gameAction(timestamp) {
   const wizard = document.querySelector('.wizard');
+  console.log(timestamp);
+  // Modify fireballs positions
+  let fireBalls = document.querySelectorAll('.fire-ball');
+
+  fireBalls.forEach((fireBall) => {
+    fireBall.x += game.speed * game.fireBallMultiplier;
+    fireBall.style.left = fireBall.x + 'px';
+
+    if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
+      fireBall.parentElement.removeChild(fireBall);
+    }
+  });
 
   // increment score count
   scene.score++;
 
   // Apply gravitation
-  let isInAir = (player.y + player.height) <= gameArea.offsetHeight;
+  let isInAir = player.y + player.height <= gameArea.offsetHeight;
 
   if (isInAir) {
     player.y += game.speed;
@@ -103,5 +116,10 @@ function gameAction() {
 
 function addFireBall() {
   let fireBall = document.createElement('div');
-  fireBall.classList.add('fireBall')
+
+  fireBall.classList.add('fire-ball');
+  fireBall.style.top = player.y + player.height / 3 - 5 + 'px';
+  fireBall.x = player.x + player.width;
+  fireBall.style.left = fireBall.x + 'px';
+  gameArea.appendChild(fireBall);
 }
