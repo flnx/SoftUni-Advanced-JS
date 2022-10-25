@@ -29,6 +29,7 @@ let game = {
   fireInterval: 1000,
   cloudSpawnInterval: 3000,
   bugSpawnInterval: 1000,
+  bugKillBonus: 2000,
 };
 
 let scene = {
@@ -162,6 +163,14 @@ function gameAction(timestamp) {
     if (isCollision(wizard, bug)) {
       gameOverAction();
     }
+
+    fireBalls.forEach(fireBall => {
+      if(isCollision(fireBall, bug)) {
+        scene.score += game.bugKillBonus;
+        bug.remove();
+        fireBall.remove();
+      }
+    })
   });
 
   // Apply movement;
