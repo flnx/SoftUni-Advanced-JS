@@ -19,16 +19,20 @@ let player = {
   y: 100,
   width: 0,
   height: 0,
+  lastTimeFiredFireball: 0,
 };
 
 let game = {
   speed: 2,
   movingMultiplier: 4,
   fireBallMultiplier: 5,
+  fireInterval: 1000,
+  cloudSpawnInterval: 3000,
 };
 
 let scene = {
   score: 0,
+  lastCloudSpawn: 0,
 };
 
 function onGameStart() {
@@ -57,8 +61,32 @@ function onKeyUp(e) {
 
 function gameAction(timestamp) {
   const wizard = document.querySelector('.wizard');
-  console.log(timestamp);
-  // Modify fireballs positions
+  // increment score count
+  scene.score++;
+
+  // Add clouds
+  if (timestamp - scene.lastCloudSpawn > game.cloudSpawnInterval + 20000 * Math.random()) {
+    let cloud = document.createElement('div');
+    cloud.classList.add('cloud');
+    cloud.x = gameArea.offsetWidth - 200;
+    cloud.style.left = cloud.x + 'px';
+    cloud.style.top = (gameArea.offsetHeight - 200) * Math.random() + 'px';
+    gameArea.appendChild(cloud);
+    scene.lastCloudSpawn = timestamp;
+  }
+
+  // Modify cloud positions
+  let clouds = document.querySelectorAll('.cloud');
+  clouds.forEach((cloud) => {
+    cloud.x -= game.speed;
+    cloud.style.left = cloud.x + 'px';
+
+    if (cloud.x + clouds.offsetWidth <= 0) {
+      cloud.parentElement.removeChild(cloud);
+    }
+  });
+
+  // Modify fireball positions
   let fireBalls = document.querySelectorAll('.fire-ball');
 
   fireBalls.forEach((fireBall) => {
@@ -69,9 +97,6 @@ function gameAction(timestamp) {
       fireBall.parentElement.removeChild(fireBall);
     }
   });
-
-  // increment score count
-  scene.score++;
 
   // Apply gravitation
   let isInAir = player.y + player.height <= gameArea.offsetHeight;
@@ -97,9 +122,10 @@ function gameAction(timestamp) {
     player.x += game.speed * game.movingMultiplier;
   }
 
-  if (keys.Space) {
+  if (keys.Space && timestamp - player.lastTimeFiredFireball > game.fireInterval) {
     wizard.classList.add('wizard-fire');
     addFireBall();
+    player.lastTimeFiredFireball = timestamp;
   } else {
     wizard.classList.remove('wizard-fire');
   }
