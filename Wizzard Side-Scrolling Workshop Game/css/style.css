@@ -1,7 +1,8 @@
 body {
   font-size: 32px;
   font-family: consolas;
-  /* margin: 0; */
+  margin: 0;
+  overflow: hidden;
 }
 
 .game-area {
@@ -14,7 +15,7 @@ body {
     rgba(55, 157, 244, 1) 100%
   );
   width: 100%;
-  height: 93vh;
+  height: 97vh;
   margin: 0;
 }
 
