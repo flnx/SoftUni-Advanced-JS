@@ -15,8 +15,10 @@ function solution() {
 
   function managment(input) {
     let [command, type, quantity] = input.split(' ');
+
     quantity = Number(quantity);
     const action = commands[command];
+    
     return action(type, quantity);
   }
 

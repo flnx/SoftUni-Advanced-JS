@@ -1,19 +1,19 @@
 function addItem() {
-  const inputField = document.getElementById('newItemText');
+    const inputField = document.getElementById('newItemText');
 
-  const liElement = document.createElement('li');
-  liElement.textContent = inputField.value;
+    const liElement = document.createElement('li');
+    liElement.textContent = inputField.value;
 
-  const deleteElement = document.createElement('a');
-  deleteElement.textContent = '[Delete]';
-  deleteElement.href = "#"
+    const deleteElement = document.createElement('a');
+    deleteElement.textContent = '[Delete]';
+    deleteElement.href = '#';
 
-  liElement.appendChild(deleteElement);
+    liElement.appendChild(deleteElement);
 
-  document.getElementById('items').appendChild(liElement);
-  inputField.value = '';
+    document.getElementById('items').appendChild(liElement);
+    inputField.value = '';
 
-  deleteElement.addEventListener('click', (e) => {
-    e.target.parentElement.remove();
-  });
+    deleteElement.addEventListener('click', (e) => {
+        e.target.parentElement.remove();
+    });
 }

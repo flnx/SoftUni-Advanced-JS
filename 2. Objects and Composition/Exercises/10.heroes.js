@@ -1,4 +1,4 @@
-function solve() {
+function solve(defaultValue) {
   const canCast = (state) => ({
     cast: (spell) => {
       console.log(`${state.name} cast ${spell}`);
@@ -8,7 +8,7 @@ function solve() {
 
   const canFight = (state) => ({
     fight: () => {
-      console.log(`${state.name} slashes at the foe!`);
+      console.log(`${state.name} slashes at the foe! + ${this} `);
       state.stamina--;
     },
   });
@@ -34,7 +34,7 @@ function solve() {
   return { mage, fighter };
 }
 
-let create = solve();
+let create = solve.call(null, "YEE CLAW");
 
 const scorcher = create.mage('Scorcher');
 scorcher.cast('fireball');
