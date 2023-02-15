@@ -50,9 +50,11 @@ class SmartHike {
 
     if (criteria == 'all') {
       let output = 'All hiking records:\n';
+
       let hikesResult = this.listOfHikes
         .map((u) => `${this.username} hiked ${u.peak} for ${u.time} hours`)
         .join('\n');
+
       return output + hikesResult;
     }
 
@@ -62,6 +64,7 @@ class SmartHike {
       return `${this.username} has not done any ${criteria} hiking yet`;
     }
     const userBest = filtered.sort((a, b) => a.time - b.time);
+    
     return `${this.username}'s best ${criteria} hike is ${userBest[0].peak} peak, for ${userBest[0].time} hours`;
   }
 }

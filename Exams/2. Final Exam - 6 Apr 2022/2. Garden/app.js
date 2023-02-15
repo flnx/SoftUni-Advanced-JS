@@ -1,78 +1,98 @@
 class Garden {
-  constructor(spaceAvailable) {
-    this.spaceAvailable = Number(spaceAvailable);
-    this.plants = [];
-    this.storage = [];
-  }
-
-  addPlant(plantName, spaceReq) {
-    if (this.spaceAvailable < spaceReq) {
-      throw new Error('Not enough space in the garden.');
+    constructor(spaceAvailable) {
+        this.spaceAvailable = Number(spaceAvailable);
+        this.plants = [];
+        this.storage = [];
     }
 
-    this.plants.push({ plantName, spaceReq, ripe: false, quantity: 0 });
-    this.spaceAvailable -= spaceReq;
-    return `The ${plantName} has been successfully planted in the garden.`;
-  }
+    addPlant(plantName, spaceReq) {
+        if (this.spaceAvailable < spaceReq) {
+            throw new Error('Not enough space in the garden.');
+        }
 
-  ripenPlant(plantNameInput, qty) {
-    if (qty <= 0) {
-      throw new Error('The quantity cannot be zero or negative.');
+        this.plants.push({
+            plantName,
+            spaceReq,
+            ripe: false,
+            quantity: 0,
+        });
+
+        this.spaceAvailable -= spaceReq;
+        return `The ${plantName} has been successfully planted in the garden.`;
     }
 
-    const plantObj = this.plants.find((x) => x.plantName == plantNameInput);
+    ripenPlant(plantNameInput, qty) {
+        if (qty <= 0) {
+            throw new Error('The quantity cannot be zero or negative.');
+        }
 
-    if (!plantObj) {
-      throw new Error(`There is no ${plantNameInput} in the garden.`);
-    }
-    if (plantObj.ripe) {
-      throw new Error(`The ${plantNameInput} is already ripe.`);
-    }
-    
-    plantObj.ripe = true;
-    plantObj.quantity += qty;
+        const plantObj = this.plants.find((x) => x.plantName == plantNameInput);
 
-    if (qty == 1) {
-      return `${qty} ${plantNameInput} has successfully ripened.`;
-    }
-    return `${qty} ${plantNameInput}s have successfully ripened.`;
-  }
+        if (!plantObj) {
+            throw new Error(`There is no ${plantNameInput} in the garden.`);
+        }
+        
+        if (plantObj.ripe) {
+            throw new Error(`The ${plantNameInput} is already ripe.`);
+        }
 
-  harvestPlant(plantNameInput) {
-    const plantIndex = this.plants.findIndex((x) => x.plantName == plantNameInput);
-    if (plantIndex == -1) {
-      throw new Error(`There is no ${plantNameInput} in the garden.`);
-    }
-    const plantObj = this.plants[plantIndex];
+        plantObj.ripe = true;
+        plantObj.quantity += qty;
 
-    if (!plantObj.ripe) {
-      throw new Error(`The ${plantNameInput} cannot be harvested before it is ripe.`);
+        if (qty == 1) {
+            return `${qty} ${plantNameInput} has successfully ripened.`;
+        }
+
+        return `${qty} ${plantNameInput}s have successfully ripened.`;
     }
 
-    this.storage.push({
-      plantName: plantNameInput,
-      quantity: plantObj.quantity,
-    });
-    this.plants.splice(plantIndex, 1);
-    this.spaceAvailable += plantObj.spaceReq;
-    return `The ${plantNameInput} has been successfully harvested.`;
-  }
+    harvestPlant(plantNameInput) {
+        const plantIndex = this.plants.findIndex(
+            (x) => x.plantName == plantNameInput
+        );
 
-  generateReport() {
-    const reportFreeSpace = `The garden has ${this.spaceAvailable} free space left.`;
-    const plantsInGarden = this.plants
-      .map((x) => x.plantName)
-      .sort((a, b) => a.localeCompare(b))
-      .join(', ');
+        if (plantIndex == -1) {
+            throw new Error(`There is no ${plantNameInput} in the garden.`);
+        }
 
-    let storageInfo = `Plants in storage: The storage is empty.`;
+        const plantObj = this.plants[plantIndex];
 
-    if (this.storage.length > 0) {
-      let plantsInStorage = this.storage.map((x) => `${x.plantName} (${x.quantity})`);
-      storageInfo = `Plants in storage: ${plantsInStorage.join(', ')}`;
+        if (!plantObj.ripe) {
+            throw new Error(
+                `The ${plantNameInput} cannot be harvested before it is ripe.`
+            );
+        }
+
+        this.storage.push({
+            plantName: plantNameInput,
+            quantity: plantObj.quantity,
+        });
+
+        this.plants.splice(plantIndex, 1);
+        this.spaceAvailable += plantObj.spaceReq;
+
+        return `The ${plantNameInput} has been successfully harvested.`;
     }
-    return `${reportFreeSpace}\nPlants in the garden: ${plantsInGarden}\n${storageInfo}`;
-  }
+
+    generateReport() {
+        const reportFreeSpace = `The garden has ${this.spaceAvailable} free space left.`;
+
+        const plantsInGarden = this.plants
+            .map((x) => x.plantName)
+            .sort((a, b) => a.localeCompare(b))
+            .join(', ');
+
+        let storageInfo = `Plants in storage: The storage is empty.`;
+
+        if (this.storage.length > 0) {
+            let plantsInStorage = this.storage.map(
+                (x) => `${x.plantName} (${x.quantity})`
+            );
+            storageInfo = `Plants in storage: ${plantsInStorage.join(', ')}`;
+        }
+
+        return `${reportFreeSpace}\nPlants in the garden: ${plantsInGarden}\n${storageInfo}`;
+    }
 }
 
 // const myGarden = new Garden(250);
