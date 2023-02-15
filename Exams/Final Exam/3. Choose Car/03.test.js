@@ -66,13 +66,4 @@ describe('chooseYourCar tests', () => {
       expect(() => car(-1, 1)).to.throw('Invalid Information!');
     });
   })
-
-
-
-
-
-
-
-
-
 })
