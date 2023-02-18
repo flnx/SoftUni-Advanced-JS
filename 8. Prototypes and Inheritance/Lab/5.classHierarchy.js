@@ -1,52 +1,55 @@
 function classHierarchy() {
-  class Figure {
-    constructor() {
-      this.units = 'cm';
-    }
-    changeUnits(unit) {
-      this.units = unit;
-    }
-    conversion(value) {
-      if (this.units == 'm') value /= 10;
-      if (this.units == 'mm') value *= 10;
-      return value;
-    }
-    toString() {
-      return `Figure units: ${this.units}`;
-    }
-  }
+    class Figure {
+        constructor() {
+            this.units = 'cm';
+        }
 
-  class Circle extends Figure {
-    constructor(radius, units) {
-      super(units);
-      this._radius = radius;
-    }
-    get area() {
-      this.radius = super.conversion(this._radius);
-      return Math.PI * this.radius * this.radius;
-    }
-    toString() {
-      return `Figures units: ${this.units} Area: ${this.area} - radius: ${this.radius}`;
-    }
-  }
+        changeUnits(unit) {
+            this.units = unit;
+        }
 
-  class Rectangle extends Figure {
-    constructor(width, height, units) {
-      super(units);
-      this._width = width;
-      this._height = height;
-      this.units = units;
+        conversion(value) {
+            if (this.units == 'm') value /= 10;
+            if (this.units == 'mm') value *= 10;
+            return value;
+        }
+        
+        toString() {
+            return `Figure units: ${this.units}`;
+        }
     }
-    get area() {
-      this.width = super.conversion(this._width);
-      this.height = super.conversion(this._height);
-      return this.width * this.height;
+
+    class Circle extends Figure {
+        constructor(radius, units) {
+            super(units);
+            this._radius = radius;
+        }
+        get area() {
+            this.radius = super.conversion(this._radius);
+            return Math.PI * this.radius * this.radius;
+        }
+        toString() {
+            return `Figures units: ${this.units} Area: ${this.area} - radius: ${this.radius}`;
+        }
     }
-    toString() {
-      return `Figures units: ${this.units} Area: ${this.area} - width: ${this.width}, height: ${this.height}`;
+
+    class Rectangle extends Figure {
+        constructor(width, height, units) {
+            super(units);
+            this._width = width;
+            this._height = height;
+            this.units = units;
+        }
+        get area() {
+            this.width = super.conversion(this._width);
+            this.height = super.conversion(this._height);
+            return this.width * this.height;
+        }
+        toString() {
+            return `Figures units: ${this.units} Area: ${this.area} - width: ${this.width}, height: ${this.height}`;
+        }
     }
-  }
-  return { Figure, Circle, Rectangle };
+    return { Figure, Circle, Rectangle };
 }
 
 let test = classHierarchy();
