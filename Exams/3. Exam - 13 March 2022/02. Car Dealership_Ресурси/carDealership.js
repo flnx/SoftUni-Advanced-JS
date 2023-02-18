@@ -1,81 +1,94 @@
 class CarDealership {
-  constructor(name) {
-    this.name = name;
-    this.availableCars  = [];
-    this.soldCars = [];
-    this.totalIncome = 0;
-  }
-
-  addCar(model, horsepower, price, mileage) {
-    let invalidFields = [horsepower, price, mileage]
-    .some(x => Math.sign(x) == -1 || !Math.sign(x) == NaN);
-    
-    if (typeof model != 'string' || model == '' || invalidFields) {
-      throw new Error('Invalid input!')
+    constructor(name) {
+        this.name = name;
+        this.availableCars = [];
+        this.soldCars = [];
+        this.totalIncome = 0;
     }
-    this.availableCars.push({model, horsepower, price, mileage});
-    return `New car added: ${model} - ${horsepower} HP - ${mileage.toFixed(2)} km - ${price.toFixed(2)}$`
-  }
-  
-  sellCar(model, desiredMileage) {
-    const findCar = this.availableCars.find(x => x.model == model);
 
-    if (!findCar) {
-      throw new Error(`${model} was not found!`)
+    addCar(model, horsepower, price, mileage) {
+        let invalidFields = [horsepower, price, mileage].some(
+            (x) => Math.sign(x) == -1 || !Math.sign(x) == NaN
+        );
+
+        if (typeof model != 'string' || model == '' || invalidFields) {
+            throw new Error('Invalid input!');
+        }
+        this.availableCars.push({ model, horsepower, price, mileage });
+        return `New car added: ${model} - ${horsepower} HP - ${mileage.toFixed(
+            2
+        )} km - ${price.toFixed(2)}$`;
     }
-    
-    let diff = findCar.mileage - desiredMileage;
-    let price = findCar.price;
 
-    if (diff > 0 && diff <= 40000) {
-      price *= 0.95;
+    sellCar(model, desiredMileage) {
+        const findCar = this.availableCars.find((x) => x.model == model);
+
+        if (!findCar) {
+            throw new Error(`${model} was not found!`);
+        }
+
+        let diff = findCar.mileage - desiredMileage;
+        let price = findCar.price;
+
+        if (diff > 0 && diff <= 40000) {
+            price *= 0.95;
+        }
+
+        if (diff > 40000) {
+            price *= 0.9;
+        }
+
+        this.soldCars.push({
+            model: findCar.model,
+            horsepower: findCar.horsepower,
+            soldPrice: price,
+        });
+
+        const index = this.availableCars.findIndex((x) => x.model == model);
+        this.availableCars.splice(index, 1);
+        this.totalIncome += price;
+        return `${model} was sold for ${price.toFixed(2)}$`;
     }
-    
-    if (diff > 40000) {
-      price *= 0.90;      
+
+    currentCar() {
+        if (this.availableCars.length == 0) {
+            return 'There are no available cars';
+        }
+        const output = '-Available cars:';
+        let carsOutput = this.availableCars.map(
+            (x) =>
+                `---${x.model} - ${x.horsepower} HP - ${x.mileage.toFixed(
+                    2
+                )} km - ${x.price.toFixed(2)}$`
+        );
+
+        return `${output}\n${carsOutput.join('\n')}`;
     }
-    
-    this.soldCars.push({
-      model: findCar.model,
-      horsepower: findCar.horsepower,
-      soldPrice: price
-    })
-    
-    const index = this.availableCars.findIndex(x => x.model == model);
-    this.availableCars.splice(index, 1);
-    this.totalIncome += price;
-    return `${model} was sold for ${price.toFixed(2)}$`
 
-  }
+    salesReport(criteria) {
+        if (criteria != 'model' && criteria != 'horsepower') {
+            throw new Error('Invalid criteria!');
+        }
 
-  currentCar() {
-    if (this.availableCars.length == 0) {
-      return "There are no available cars"
+        const sortFn = {
+            model: (a, b) => a.model.localeCompare(b.model),
+            horsepower: (a, b) => b.horsepower - a.horsepower,
+        };
+
+        let sortedByCriteria = this.soldCars.sort(sortFn[criteria]);
+        let totalIncome = `-${
+            this.name
+        } has a total income of ${this.totalIncome.toFixed(2)}$`;
+        let totalSold = `-${this.soldCars.length} cars sold:`;
+        let soldModel = sortedByCriteria.map(
+            (x) =>
+                `---${x.model} - ${x.horsepower} HP - ${x.soldPrice.toFixed(
+                    2
+                )}$`
+        );
+
+        return `${totalIncome}\n${totalSold}\n${soldModel.join('\n')}`;
     }
-    const output = '-Available cars:'
-    let carsOutput = this.availableCars
-      .map(x => `---${x.model} - ${x.horsepower} HP - ${x.mileage.toFixed(2)} km - ${x.price.toFixed(2)}$`)
-
-    return `${output}\n${carsOutput.join('\n')}`;
-  }
-
-  salesReport(criteria) {
-    if (criteria != 'model' && criteria != 'horsepower') {
-      throw new Error ('Invalid criteria!');
-    }
-    
-    const sortFn = {
-      model: (a, b) => a.model.localeCompare(b.model),
-      horsepower: (a, b) => b.horsepower - a.horsepower,
-    }
-    
-    let sortedByCriteria = this.soldCars.sort(sortFn[criteria]);
-    let totalIncome = `-${this.name} has a total income of ${this.totalIncome.toFixed(2)}$`
-    let totalSold = `-${this.soldCars.length} cars sold:`
-    let soldModel = sortedByCriteria.map(x => `---${x.model} - ${x.horsepower} HP - ${x.soldPrice.toFixed(2)}$`);
-
-    return `${totalIncome}\n${totalSold}\n${soldModel.join('\n')}`;
-  }
 }
 
 module.exports = { CarDealership };
